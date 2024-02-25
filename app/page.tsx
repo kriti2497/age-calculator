@@ -114,7 +114,7 @@ export default function Home() {
   return (
     <div className="bg-gray-400 h-screen flex justify-center items-center">
       {/* sm:h-4/5 bg-blue-500 md:bg-red-500 lg:bg-green-500 */}
-      <div className="main-box bg-white w-9/12 h-2/5 md:w-6/12 md:h-3/6 p-6 md:p-10">
+      <div className="main-box bg-white w-9/12 md:w-6/12 p-6 md:p-10">
         <div className="md:flex md:gap-2">
           <div className="flex gap-4">
             <InputField

@@ -13,7 +13,7 @@ export default function Home() {
   const [dayErr, setDayErr] = useState("");
   const [monthErr, setMonthErr] = useState("");
   const [yearErr, setYearErr] = useState("");
-  const [err, setErr] = useState(false);
+  const [generalErr, setGeneralErr] = useState("");
 
   const initialState = {
     dayVal: "--",
@@ -57,8 +57,18 @@ export default function Home() {
       }
 
       setFinalDateValues(initialState);
-      setErr(true);
     } else {
+      console.log(
+        new Date(+month + "-" + +day + "-" + +year).getTime(),
+        new Date(currentMonth + "-" + currentDay + "-" + currentYear).getTime()
+      );
+      if (
+        new Date(+month + "-" + +day + "-" + +year).getTime() >
+        new Date(currentMonth + "-" + currentDay + "-" + currentYear).getTime()
+      ) {
+        setGeneralErr("Can calculate your age as of today");
+        return;
+      }
       let birthYear = parseInt(year, 10);
       let birthMonth = parseInt(month, 10);
       let birthDay = parseInt(day, 10);
@@ -86,19 +96,17 @@ export default function Home() {
   };
 
   const setFormValues = (e: any) => {
+    setGeneralErr("");
     if (e && e.target) {
       if (e.target.name === "day") {
-        setErr(false);
         setDayErr("");
         setDay(e.target.value);
       }
       if (e.target.name === "month") {
-        setErr(false);
         setMonthErr("");
         setMonth(e.target.value);
       }
       if (e.target.name === "year") {
-        setErr(false);
         setYearErr("");
         setYear(e.target.value);
       }
@@ -155,6 +163,7 @@ export default function Home() {
             </button>
           </div>
         </div>
+        {generalErr && <p className="error-val">{generalErr}</p>}
 
         <div className="pt-2">
           <PrintFinalValues

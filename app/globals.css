@@ -29,3 +29,9 @@ body {
 .main-box {
   border-radius: 15px 15px 110px 15px;
 }
+
+.error-val {
+  color: #ec2424;
+  font-size: 12px;
+  margin-top: 10px;
+}
